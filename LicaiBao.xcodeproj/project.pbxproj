@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04FD41121895129400873FC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD41111895129400873FC6 /* Foundation.framework */; };
+		04FD41141895129400873FC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD41131895129400873FC6 /* CoreGraphics.framework */; };
+		04FD41161895129400873FC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD41151895129400873FC6 /* UIKit.framework */; };
+		04FD411C1895129400873FC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04FD411A1895129400873FC6 /* InfoPlist.strings */; };
+		04FD411E1895129400873FC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD411D1895129400873FC6 /* main.m */; };
+		04FD41221895129400873FC6 /* LC_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD41211895129400873FC6 /* LC_AppDelegate.m */; };
+		04FD41241895129400873FC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FD41231895129400873FC6 /* Images.xcassets */; };
+		04FD412B1895129400873FC6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD412A1895129400873FC6 /* XCTest.framework */; };
+		04FD412C1895129400873FC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD41111895129400873FC6 /* Foundation.framework */; };
+		04FD412D1895129400873FC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FD41151895129400873FC6 /* UIKit.framework */; };
+		04FD41351895129400873FC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04FD41331895129400873FC6 /* InfoPlist.strings */; };
+		04FD41371895129400873FC6 /* LicaiBaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD41361895129400873FC6 /* LicaiBaoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04FD412E1895129400873FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04FD41061895129400873FC6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04FD410D1895129400873FC6;
+			remoteInfo = LicaiBao;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04FD410E1895129400873FC6 /* LicaiBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LicaiBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FD41111895129400873FC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		04FD41131895129400873FC6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		04FD41151895129400873FC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		04FD41191895129400873FC6 /* LicaiBao-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LicaiBao-Info.plist"; sourceTree = "<group>"; };
+		04FD411B1895129400873FC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		04FD411D1895129400873FC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		04FD411F1895129400873FC6 /* LicaiBao-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LicaiBao-Prefix.pch"; sourceTree = "<group>"; };
+		04FD41201895129400873FC6 /* LC_AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LC_AppDelegate.h; sourceTree = "<group>"; };
+		04FD41211895129400873FC6 /* LC_AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LC_AppDelegate.m; sourceTree = "<group>"; };
+		04FD41231895129400873FC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		04FD41291895129400873FC6 /* LicaiBaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LicaiBaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FD412A1895129400873FC6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		04FD41321895129400873FC6 /* LicaiBaoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LicaiBaoTests-Info.plist"; sourceTree = "<group>"; };
+		04FD41341895129400873FC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		04FD41361895129400873FC6 /* LicaiBaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LicaiBaoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04FD410B1895129400873FC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD41141895129400873FC6 /* CoreGraphics.framework in Frameworks */,
+				04FD41161895129400873FC6 /* UIKit.framework in Frameworks */,
+				04FD41121895129400873FC6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FD41261895129400873FC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD412B1895129400873FC6 /* XCTest.framework in Frameworks */,
+				04FD412D1895129400873FC6 /* UIKit.framework in Frameworks */,
+				04FD412C1895129400873FC6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04FD41051895129400873FC6 = {
+			isa = PBXGroup;
+			children = (
+				04FD41171895129400873FC6 /* LicaiBao */,
+				04FD41301895129400873FC6 /* LicaiBaoTests */,
+				04FD41101895129400873FC6 /* Frameworks */,
+				04FD410F1895129400873FC6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04FD410F1895129400873FC6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04FD410E1895129400873FC6 /* LicaiBao.app */,
+				04FD41291895129400873FC6 /* LicaiBaoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04FD41101895129400873FC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04FD41111895129400873FC6 /* Foundation.framework */,
+				04FD41131895129400873FC6 /* CoreGraphics.framework */,
+				04FD41151895129400873FC6 /* UIKit.framework */,
+				04FD412A1895129400873FC6 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04FD41171895129400873FC6 /* LicaiBao */ = {
+			isa = PBXGroup;
+			children = (
+				04FD41201895129400873FC6 /* LC_AppDelegate.h */,
+				04FD41211895129400873FC6 /* LC_AppDelegate.m */,
+				04FD41231895129400873FC6 /* Images.xcassets */,
+				04FD41181895129400873FC6 /* Supporting Files */,
+			);
+			path = LicaiBao;
+			sourceTree = "<group>";
+		};
+		04FD41181895129400873FC6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04FD41191895129400873FC6 /* LicaiBao-Info.plist */,
+				04FD411A1895129400873FC6 /* InfoPlist.strings */,
+				04FD411D1895129400873FC6 /* main.m */,
+				04FD411F1895129400873FC6 /* LicaiBao-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04FD41301895129400873FC6 /* LicaiBaoTests */ = {
+			isa = PBXGroup;
+			children = (
+				04FD41361895129400873FC6 /* LicaiBaoTests.m */,
+				04FD41311895129400873FC6 /* Supporting Files */,
+			);
+			path = LicaiBaoTests;
+			sourceTree = "<group>";
+		};
+		04FD41311895129400873FC6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04FD41321895129400873FC6 /* LicaiBaoTests-Info.plist */,
+				04FD41331895129400873FC6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04FD410D1895129400873FC6 /* LicaiBao */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FD413A1895129400873FC6 /* Build configuration list for PBXNativeTarget "LicaiBao" */;
+			buildPhases = (
+				04FD410A1895129400873FC6 /* Sources */,
+				04FD410B1895129400873FC6 /* Frameworks */,
+				04FD410C1895129400873FC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LicaiBao;
+			productName = LicaiBao;
+			productReference = 04FD410E1895129400873FC6 /* LicaiBao.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04FD41281895129400873FC6 /* LicaiBaoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FD413D1895129400873FC6 /* Build configuration list for PBXNativeTarget "LicaiBaoTests" */;
+			buildPhases = (
+				04FD41251895129400873FC6 /* Sources */,
+				04FD41261895129400873FC6 /* Frameworks */,
+				04FD41271895129400873FC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04FD412F1895129400873FC6 /* PBXTargetDependency */,
+			);
+			name = LicaiBaoTests;
+			productName = LicaiBaoTests;
+			productReference = 04FD41291895129400873FC6 /* LicaiBaoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04FD41061895129400873FC6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LC_;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "trends-china";
+				TargetAttributes = {
+					04FD41281895129400873FC6 = {
+						TestTargetID = 04FD410D1895129400873FC6;
+					};
+				};
+			};
+			buildConfigurationList = 04FD41091895129400873FC6 /* Build configuration list for PBXProject "LicaiBao" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 04FD41051895129400873FC6;
+			productRefGroup = 04FD410F1895129400873FC6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04FD410D1895129400873FC6 /* LicaiBao */,
+				04FD41281895129400873FC6 /* LicaiBaoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04FD410C1895129400873FC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD411C1895129400873FC6 /* InfoPlist.strings in Resources */,
+				04FD41241895129400873FC6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FD41271895129400873FC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD41351895129400873FC6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04FD410A1895129400873FC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD411E1895129400873FC6 /* main.m in Sources */,
+				04FD41221895129400873FC6 /* LC_AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FD41251895129400873FC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD41371895129400873FC6 /* LicaiBaoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04FD412F1895129400873FC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04FD410D1895129400873FC6 /* LicaiBao */;
+			targetProxy = 04FD412E1895129400873FC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04FD411A1895129400873FC6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04FD411B1895129400873FC6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		04FD41331895129400873FC6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04FD41341895129400873FC6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04FD41381895129400873FC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		04FD41391895129400873FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04FD413B1895129400873FC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LicaiBao/LicaiBao-Prefix.pch";
+				INFOPLIST_FILE = "LicaiBao/LicaiBao-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		04FD413C1895129400873FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LicaiBao/LicaiBao-Prefix.pch";
+				INFOPLIST_FILE = "LicaiBao/LicaiBao-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		04FD413E1895129400873FC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LicaiBao.app/LicaiBao";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LicaiBao/LicaiBao-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LicaiBaoTests/LicaiBaoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		04FD413F1895129400873FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LicaiBao.app/LicaiBao";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LicaiBao/LicaiBao-Prefix.pch";
+				INFOPLIST_FILE = "LicaiBaoTests/LicaiBaoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04FD41091895129400873FC6 /* Build configuration list for PBXProject "LicaiBao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FD41381895129400873FC6 /* Debug */,
+				04FD41391895129400873FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04FD413A1895129400873FC6 /* Build configuration list for PBXNativeTarget "LicaiBao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FD413B1895129400873FC6 /* Debug */,
+				04FD413C1895129400873FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		04FD413D1895129400873FC6 /* Build configuration list for PBXNativeTarget "LicaiBaoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FD413E1895129400873FC6 /* Debug */,
+				04FD413F1895129400873FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 04FD41061895129400873FC6 /* Project object */;
+}
