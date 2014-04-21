@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface LC_AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    UINavigationController *_rootNav;
+    NSArray *_fundArray;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UINavigationController *rootNav;
+@property (strong, nonatomic) NSArray *fundArray;
+@property (strong, nonatomic) LC_AboutViewController *aboutViewController;
+
 
 @end

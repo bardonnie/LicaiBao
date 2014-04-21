@@ -8,12 +8,59 @@
 
 #import "LC_AppDelegate.h"
 
+
 @implementation LC_AppDelegate
+@synthesize rootNav = _rootNav;
+@synthesize fundArray = _fundArray;
+@synthesize aboutViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    NSLog(@"path - %@",NSHomeDirectory());
+    
+    [UMSocialData setAppKey:UMENG_APP_KEY];
+    [UMSocialWechatHandler setWXAppId:@"wxd9a39c7122aa6516" url:nil];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"2014.01.01" forKey:@"Time"];
+        
+        NSFileManager * fm = [NSFileManager defaultManager];
+        NSError * error = nil;
+        BOOL ret = [fm copyItemAtPath:DB_AT_PATH
+                               toPath:DB_TO_PATH
+                                error:&error];
+        if (ret)
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+        NSLog(@"-- 2");
+
+    }
+    
+    if (IOS7_OR_LATER) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
+    [[LC_Network shareNetwork] downloadAllFundInfo:[[DataBase shareDataBase] selectFundCode]];
+    
+    LC_RootViewController *rootViewController = [[LC_RootViewController alloc] init];
+    _rootNav = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    self.window.rootViewController = _rootNav;
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FundList" ofType:@"plist"];
+    _fundArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
+    
+    aboutViewController = [[LC_AboutViewController alloc] init];
+        
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

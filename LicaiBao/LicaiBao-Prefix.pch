@@ -13,4 +13,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "AFNetworking.h"
+    #import "UIDefine.h"  
+    #import "DataBase.h"
+
+    #define UMENG_APP_KEY   @"532dbbc656240b2cee196b3f"
+
+    #import "LC_Header.h"
+
 #endif
