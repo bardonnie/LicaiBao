@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>余额宝</string>
+		<key>company</key>
+		<string>阿里巴巴</string>
+		<key>code</key>
+		<string>000198</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>百赚</string>
+		<key>company</key>
+		<string>百度</string>
+		<key>code</key>
+		<string>003003</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>百赚利滚利</string>
+		<key>company</key>
+		<string>百度</string>
+		<key>code</key>
+		<string>000464</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>理财通</string>
+		<key>company</key>
+		<string>腾讯</string>
+		<key>code</key>
+		<string>000343</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>零钱宝-广发</string>
+		<key>company</key>
+		<string>苏宁</string>
+		<key>code</key>
+		<string>000389</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>零钱宝-汇添富</string>
+		<key>company</key>
+		<string>苏宁</string>
+		<key>code</key>
+		<string>000330</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>现金宝</string>
+		<key>company</key>
+		<string>网易</string>
+		<key>code</key>
+		<string>000330</string>
+	</dict>
+</array>
+</plist>

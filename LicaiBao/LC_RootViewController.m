@@ -13,7 +13,6 @@
 {
     NSArray *_fundArray;
     UITableView *_homeTableView;
-    LC_AppDelegate *_appdelegate;
     MJRefreshHeaderView *_header;
     UILabel *_dateLabel;
 }
@@ -29,6 +28,15 @@
         // Custom initialization
     }
     return self;
+}
+
+// 设置标题视图
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIImageView *headerView = [[UIImageView alloc] init];
+    headerView.frame = CGRectMake(0, 0, MAIN_WINDOW_WIDTH, 35);
+    [headerView setImage:[UIImage imageNamed:@"title"]];
+    return headerView;
 }
 
 - (void)viewDidLoad
@@ -83,18 +91,8 @@
     header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         // 进入刷新状态就会回调这个Block
         NSLog(@"%@----开始进入刷新状态", refreshView.class);
-        
-        _appdelegate = [UIApplication sharedApplication].delegate;
-        
-        NSMutableString *allCode = [[NSMutableString alloc] init];
-        for (NSDictionary *fundDic in _appdelegate.fundArray)
-        {
-            [allCode appendString:[NSString stringWithFormat:@"%@,",[fundDic objectForKey:@"code"]]];
-        }
-        
-        LC_Network *network = [[LC_Network alloc] init];
-        network.delegate = self;
-        [network startDownload:[NSString stringWithFormat:@"http://wiapi.hexun.com/fund/getnv.php?s=%@",allCode]];
+        [[LC_Network shareNetwork] downloadAllFundInfo:[[DataBase shareDataBase] selectFundCode]];
+        [LC_Network shareNetwork].delegate = self;
     };
     header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
         // 刷新完毕就会回调这个Block
@@ -105,6 +103,31 @@
     };
     [header beginRefreshing];
     _header = header;
+}
+
+#pragma mark - networkDelegate
+- (void)downloadFinish
+{
+    [self selectFundData];
+    [_header endRefreshing];
+}
+
+- (void)downloadFail:(NSError *)error
+{
+    [self selectFundData];
+    [_header endRefreshing];
+}
+
+- (void)selectFundData
+{
+    NSMutableArray *fundMutableArray = [NSMutableArray arrayWithArray:[[DataBase shareDataBase] selectTodayFund]];
+    [fundMutableArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        LC_Fund *doc1 = (LC_Fund*)obj1;
+        LC_Fund *doc2 = (LC_Fund*)obj2;
+        return [doc2.sevenDay compare:doc1.sevenDay];
+    }];
+    _fundArray = fundMutableArray;
+    [_homeTableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -126,17 +149,8 @@
     cell.fundNameLabel.text = fund.name;
     cell.companyLabel.text = fund.company;
     cell.sevenDay.text = fund.sevenDay;
-    cell.wanFen.text = fund.net;
+    cell.wanFen.text = fund.wanFen;
     return cell;
-}
-
-// 设置标题视图
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIImageView *headerView = [[UIImageView alloc] init];
-    headerView.frame = CGRectMake(0, 0, MAIN_WINDOW_WIDTH, 35);
-    [headerView setImage:[UIImage imageNamed:@"title"]];
-    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -156,75 +170,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LC_FundInfoViewController *fundInfoViewController = [[LC_FundInfoViewController alloc] initWithFund:fund WithNumOfAllFund:_fundArray.count AndRank:indexPath.row+1];
     [self.navigationController pushViewController:fundInfoViewController animated:YES];
-}
-
-#pragma mark - networkDelegate
-- (void)downloadFinish:(NSData *)data
-{
-    NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    
-    NSMutableArray *funds = [[NSMutableArray alloc] init];
-    for (NSDictionary *fundDic in _appdelegate.fundArray)
-    {
-        LC_Fund *fund = [[LC_Fund alloc] init];
-        for (NSString *code in resultDic)
-        {
-            if ([[fundDic objectForKey:@"code"] isEqualToString:code])
-            {
-                fund.name = [fundDic objectForKey:@"name"];
-                fund.company = [fundDic objectForKey:@"company"];
-                fund.sevenDay = [NSString stringWithFormat:@"%.3lf%@",[[[resultDic objectForKey:code] objectForKey:@"net"] doubleValue], @"%"];
-                fund.net = [NSString stringWithFormat:@"%.3lf%@",[[[resultDic objectForKey:code] objectForKey:@"unit"] doubleValue], @"%"];
-                fund.fundCode = code;
-            }
-        }
-        
-        if ([[DataBase shareDataBase] selectFund:fund.fundCode])
-        {
-            [[DataBase shareDataBase] updateFund:fund];
-        }
-        else
-        {
-            [[DataBase shareDataBase] insertFund:fund];
-        }
-        
-        [funds addObject:fund];
-    }
-    
-    _fundArray = [funds sortedArrayUsingComparator:^NSComparisonResult(LC_Fund *fund1, LC_Fund *fund2)
-                  {
-                      NSComparisonResult result = [fund1.sevenDay compare:fund2.sevenDay];
-                      return result == NSOrderedAscending;
-                  }];
-    
-    _dateLabel.text = [NSString stringWithFormat:@"%@",[self todayDate:[[NSUserDefaults standardUserDefaults] objectForKey:@"MJRefreshHeaderView"]]];
-    
-    [_homeTableView reloadData];
-    [_header endRefreshing];
-}
-
-- (void)downloadFail:(NSError *)error
-{
-    NSMutableArray *dataBaseArray = [[DataBase shareDataBase] selectAllFund];
-    _fundArray = [dataBaseArray sortedArrayUsingComparator:^NSComparisonResult(LC_Fund *fund1, LC_Fund *fund2)
-                  {
-                      NSComparisonResult result = [fund1.sevenDay compare:fund2.sevenDay];
-                      return result == NSOrderedAscending;
-                  }];
-    [_homeTableView reloadData];
-
-    [_header endRefreshing];
-}
-
-- (NSString *)todayDate:(NSDate *)date
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy.MM.dd";
-    NSString *time = [formatter stringFromDate:date];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:time forKey:@"Time"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    return time;
 }
 
 // 关于按钮点击

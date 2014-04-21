@@ -14,15 +14,13 @@
 
 + (DataBase *)shareDataBase;
 
-- (void)createDataBase;
-- (void)createFundsTabel;
-- (void)insertFund:(LC_Fund *)fund;
-- (void)updateFund:(LC_Fund *)fund;
-- (BOOL)selectFund:(NSString *)fundCode;
+- (NSString *)todayDate:(NSDate *)date;
 
 - (NSArray *)selectFundCode;
 
-- (NSMutableArray *)selectAllFund;
 - (void)uploadFundInfo:(NSArray *)fundArray;
+
+- (NSArray *)selectTodayFund;
+- (NSArray *)selectTrendsFund:(NSString *)fundCode;
 
 @end

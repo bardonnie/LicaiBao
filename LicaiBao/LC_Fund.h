@@ -13,9 +13,10 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *company;
 @property (nonatomic, strong) NSString *sevenDay;
-@property (nonatomic, strong) NSString *net;
+@property (nonatomic, strong) NSString *wanFen;
 @property (nonatomic, strong) NSString *fundCode;
 @property (nonatomic, strong) NSString *oldSevenDay;
-@property (nonatomic, strong) NSString *oldNet;
+@property (nonatomic, strong) NSString *oldWanFen;
+@property (nonatomic, strong) NSString *update;
 
 @end

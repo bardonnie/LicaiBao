@@ -50,17 +50,17 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
     
-    [[LC_Network shareNetwork] downloadAllFundInfo:[[DataBase shareDataBase] selectFundCode]];
+//    [[LC_Network shareNetwork] downloadAllFundInfo:[[DataBase shareDataBase] selectFundCode]];
     
     LC_RootViewController *rootViewController = [[LC_RootViewController alloc] init];
     _rootNav = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     self.window.rootViewController = _rootNav;
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FundList" ofType:@"plist"];
-    _fundArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
+//    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FundList" ofType:@"plist"];
+//    _fundArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
     
     aboutViewController = [[LC_AboutViewController alloc] init];
-        
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

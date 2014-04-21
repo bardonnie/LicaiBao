@@ -10,8 +10,9 @@
 
 @protocol NetworKDelegate <NSObject>
 
-- (void)downloadFinish:(NSData *)data;
 - (void)downloadFail:( NSError *)error;
+
+- (void)downloadFinish;
 
 @end
 
@@ -21,8 +22,6 @@
 }
 
 @property (nonatomic, weak) __weak id< NetworKDelegate> delegate;
-
-- (void)startDownload:(NSString *)url;
 
 + (LC_Network *)shareNetwork;
 

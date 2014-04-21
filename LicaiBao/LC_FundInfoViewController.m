@@ -40,7 +40,7 @@
         _fundName = [NSString stringWithString:fund.name];
         _companyName = [NSString stringWithString:fund.company];
         _sevenDayStr = [NSString stringWithString:fund.sevenDay];
-        _earningsStr = [NSString stringWithString:fund.net];
+        _earningsStr = [NSString stringWithString:fund.wanFen];
         
         fundCount = num;
         rankNum = rank;
@@ -97,7 +97,7 @@
     // 请求基金详情信息
     LC_Network *network = [[LC_Network alloc] init];
     network.delegate = self;
-    [network startDownload:[NSString stringWithFormat:@"http://wiapi.hexun.com/fund/fundtrend.php?code=%@&c=9",_fundCode]];
+//    [network startDownload:[NSString stringWithFormat:@"http://wiapi.hexun.com/fund/fundtrend.php?code=%@&c=9",_fundCode]];
     NSLog(@"**");
     
     UIScrollView *fundInfoScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT)];

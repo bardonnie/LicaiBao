@@ -41,7 +41,7 @@ static LC_Network *_shareNetwork;
     NSString *URLTmp1 = [URLTmp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     URLTmp = URLTmp1;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: URLTmp]];
-        
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", operation.responseString);
@@ -52,22 +52,14 @@ static LC_Network *_shareNetwork;
         for ( GDataXMLElement *element in [root nodesForXPath:@"//data" error:nil])
         {
             LC_Fund *fund = [[LC_Fund alloc] init];
-            fund.net = [[[element elementsForName:@"netvalue"] lastObject] stringValue];
-            fund.sevenDay = [[[element elementsForName:@"unitnetvalue"] lastObject] stringValue];
+            fund.wanFen = [[[element elementsForName:@"unitnetvalue"] lastObject] stringValue];
+            fund.sevenDay = [[[element elementsForName:@"netvalue"] lastObject] stringValue];
             fund.fundCode = fundCode;
             [fundArray addObject:fund];
-//            [arrayNet addObject:[[[element elementsForName:@"netvalue"] lastObject] stringValue]];
-//            [arrayUnitnet addObject:[[[element elementsForName:@"unitnetvalue"] lastObject] stringValue]];
         }
-        [[DataBase shareDataBase] uploadFundInfo:fundArray];
-//        _netArray = [[arrayNet reverseObjectEnumerator] allObjects];
-//        [sevenDaySimpleLineGraphView reloadGraph];
-//        _unitnetArray = [[arrayUnitnet reverseObjectEnumerator] allObjects];
-//        [earningsSimpleLineGraphView reloadGraph];
         
-        NSString *requestTmp = [NSString stringWithString:operation.responseString];
-        [_delegate downloadFinish:[[NSData alloc] initWithData:[requestTmp dataUsingEncoding:NSUTF8StringEncoding]]];
-
+        [[DataBase shareDataBase] uploadFundInfo:fundArray];
+        [_delegate downloadFinish];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Failure: %@", error);
