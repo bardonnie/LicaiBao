@@ -10,7 +10,7 @@
 #import "GDataXMLNode.h"
 
 
-@interface LC_FundInfoViewController ()< NetworKDelegate, UMSocialShakeDelegate>
+@interface LC_FundInfoViewController ()<UMSocialShakeDelegate, UMSocialUIDelegate>
 {
     NSString *_fundCode;
     NSString *_fundName;
@@ -22,7 +22,7 @@
     UILabel *_earningsLabel;
     UILabel *_sevenDayLabel;
     
-    int fundCount;
+    int _fundCount;
     int rankNum;
 }
 
@@ -32,18 +32,23 @@
 
 @synthesize sevenDaySimpleLineGraphView,earningsSimpleLineGraphView;
 
-- (id)initWithFund:(LC_Fund *)fund WithNumOfAllFund:(int)num AndRank:(int)rank
+- (id)initWithFundName:(NSString *)fundName FundCount:(int)fundCount AndFundRank:(int)fundRank
 {
     self = [super init];
     if (self) {
-        _fundCode = [NSString stringWithString:fund.fundCode];
+        
+        LC_Fund *fund = [[DataBase shareDataBase] selectTrendsFund:fundName];
+        
         _fundName = [NSString stringWithString:fund.name];
         _companyName = [NSString stringWithString:fund.company];
-        _sevenDayStr = [NSString stringWithString:fund.sevenDay];
-        _earningsStr = [NSString stringWithString:fund.wanFen];
+        _sevenDayStr = [NSString stringWithString:[fund.sevenDayArray lastObject]];
+        _earningsStr = [NSString stringWithString:[fund.wanFenArray lastObject]];
         
-        fundCount = num;
-        rankNum = rank;
+        _unitnetArray = [NSArray arrayWithArray:fund.wanFenArray];
+        _netArray = [NSArray arrayWithArray:fund.sevenDayArray];
+        
+        _fundCount = fundCount;
+        rankNum = fundRank+1;
     }
     return self;
 }
@@ -88,17 +93,11 @@
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 100, 20)];
     dateLabel.textColor = [UIColor whiteColor];
     dateLabel.textAlignment = NSTextAlignmentCenter;
-    dateLabel.text = @"2014.3.16";
+    dateLabel.text = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"Time"]];
     dateLabel.font = [UIFont fontWithName:@"Arial Rounded MT Bold" size:14];
     [titleView addSubview:dateLabel];
     
     self.navigationItem.titleView = titleView;
-    
-    // 请求基金详情信息
-    LC_Network *network = [[LC_Network alloc] init];
-    network.delegate = self;
-//    [network startDownload:[NSString stringWithFormat:@"http://wiapi.hexun.com/fund/fundtrend.php?code=%@&c=9",_fundCode]];
-    NSLog(@"**");
     
     UIScrollView *fundInfoScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT)];
     fundInfoScrollView.contentSize = CGSizeMake(MAIN_WINDOW_WIDTH, 480);
@@ -117,25 +116,25 @@
     
     // 基金所属公司名称标签
     UILabel *companyNameLabel = [[UILabel alloc] init];
-    companyNameLabel.frame = CGRectMake( 20+fundNameLabel.frame.size.width, 16, 154, 32);
+    companyNameLabel.frame = CGRectMake( 10+fundNameLabel.frame.size.width, 16, 80, 22);
     companyNameLabel.backgroundColor = [UIColor clearColor];
-    [companyNameLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [companyNameLabel setFont:[UIFont boldSystemFontOfSize:14]];
     companyNameLabel.textAlignment = NSTextAlignmentCenter;
     companyNameLabel.text = _companyName;
     companyNameLabel.textColor = UIColorFromRGB(0x454443);
-    [companyNameLabel sizeToFit];
+//    [companyNameLabel sizeToFit];
     [fundInfoScrollView addSubview:companyNameLabel];
     
-    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 100, 30)];
+    UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 110, 30)];
     numLabel.backgroundColor = [UIColor clearColor];
     numLabel.textAlignment = NSTextAlignmentCenter;
-    numLabel.font = [UIFont systemFontOfSize:16];
-    numLabel.text = [NSString stringWithFormat:@"收益排名:   /%d",fundCount];
+    numLabel.font = [UIFont systemFontOfSize:14];
+    numLabel.text = [NSString stringWithFormat:@"收益排名:   /%d",_fundCount];
     [fundInfoScrollView addSubview:numLabel];
     
     UILabel *rankLabel = [[UILabel alloc] initWithFrame:CGRectMake(72, 0, 10, 30)];
     rankLabel.backgroundColor = [UIColor clearColor];
-    rankLabel.font = [UIFont boldSystemFontOfSize:16];
+    rankLabel.font = [UIFont boldSystemFontOfSize:14];
     rankLabel.text = [NSString stringWithFormat:@"%d",rankNum];
     rankLabel.textColor = UIColorFromRGB(0xf96231);
     [numLabel addSubview:rankLabel];
@@ -206,7 +205,7 @@
     _earningsLabel.textAlignment = NSTextAlignmentCenter;
     _earningsLabel.backgroundColor = [UIColor clearColor];
     _earningsLabel.font = [UIFont systemFontOfSize:16];
-    _earningsLabel.text = [NSString stringWithFormat:@"%@",_sevenDayStr];
+    _earningsLabel.text = [NSString stringWithFormat:@"%@",_earningsStr];
     _earningsLabel.textColor = UIColorFromRGB(0xf96231);
     [earningsImageView addSubview:_earningsLabel];
     
@@ -241,35 +240,26 @@
 
 - (void)uMengShare
 {
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
+    [UMSocialData defaultData].extConfig.title = @"点击跳转至App Store 下载理财宝";
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"https://itunes.apple.com/us/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8";
+    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UMENG_APP_KEY
-                                      shareText:@"你的分享文字"
+                                      shareText:[NSString stringWithFormat:@"#理财宝·收益趋势#%@ 近9日收益趋势",_fundName]
                                      shareImage:[[UMSocialScreenShoterDefault screenShoter] getScreenShot]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToTencent]
-                                       delegate:nil];
+                                       delegate:self];
 }
 
-#pragma mark - networkDelegate
-- (void)downloadFinish:(NSData *)data
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    NSMutableArray *arrayNet = [[NSMutableArray alloc] init];
-    NSMutableArray *arrayUnitnet = [[NSMutableArray alloc] init];
-    
-    GDataXMLDocument *root = [[GDataXMLDocument alloc] initWithData:data options:0 error:nil];
-    for ( GDataXMLElement *element in [root nodesForXPath:@"//data" error:nil])
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
     {
-        [arrayNet addObject:[[[element elementsForName:@"netvalue"] lastObject] stringValue]];
-        [arrayUnitnet addObject:[[[element elementsForName:@"unitnetvalue"] lastObject] stringValue]];
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
     }
-    _netArray = [[arrayNet reverseObjectEnumerator] allObjects];
-    [sevenDaySimpleLineGraphView reloadGraph];
-    _unitnetArray = [[arrayUnitnet reverseObjectEnumerator] allObjects];
-    [earningsSimpleLineGraphView reloadGraph];
-}
-
-- (void)downloadFail:(NSError *)error
-{
-    NSLog(@"eroror - %@",error);
 }
 
 #pragma mark - SimpleLineGraph Data Source

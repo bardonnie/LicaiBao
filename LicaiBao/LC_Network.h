@@ -10,9 +10,12 @@
 
 @protocol NetworKDelegate <NSObject>
 
+@optional
+
 - (void)downloadFail:( NSError *)error;
 
 - (void)downloadFinish;
+- (void)downloadFinishWith:(NSDictionary *)json;
 
 @end
 
@@ -26,5 +29,7 @@
 + (LC_Network *)shareNetwork;
 
 - (void)downloadAllFundInfo:(NSArray *)fundArray;
+- (void)sina:(NSDictionary *)sinaInfo url:(NSString *)url;
+
 
 @end

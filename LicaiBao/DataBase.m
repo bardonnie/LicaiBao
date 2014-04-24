@@ -74,6 +74,7 @@ static DataBase *_shareDataBase;
     while ([rs next])
     {
         LC_Fund *fund = [[LC_Fund alloc] init];
+        fund.fundCode = [rs stringForColumn:@"FundsCode"];
         fund.name = [rs stringForColumn:@"FundsName"];
         fund.company = [rs stringForColumn:@"FundsCompany"];
         fund.sevenDay = [rs stringForColumn:@"seven01"];
@@ -85,9 +86,37 @@ static DataBase *_shareDataBase;
     return codeArray;
 }
 
-- (NSArray *)selectTrendsFund:(NSString *)fundCode
+- (LC_Fund *)selectTrendsFund:(NSString *)fundName
 {
-    return nil;
+    FMDatabase *dataBases = [[FMDatabase alloc] initWithPath:DB_TO_PATH];
+    if(![dataBases open])
+    {
+        NSLog(@"打开数据库失败");
+        return nil;
+    }
+    
+    FMResultSet *rs = [dataBases executeQuery:@"SELECT * FROM Funds WHERE FundsName = ?",fundName];
+    
+    NSMutableArray *sevenDayArray = [NSMutableArray array];
+    NSMutableArray *wanFenArray = [NSMutableArray array];
+    
+    LC_Fund *fund = [[LC_Fund alloc] init];
+    while ([rs next])
+    {
+        fund.name = [rs stringForColumn:@"FundsName"];
+        fund.company = [rs stringForColumn:@"FundsCompany"];
+        
+        for (int i = 9; i>0; i--)
+        {
+            [sevenDayArray addObject:[rs stringForColumn:[NSString stringWithFormat:@"seven0%d",i]]];
+            [wanFenArray addObject:[rs stringForColumn:[NSString stringWithFormat:@"wanfen0%d",i]]];
+        }
+        fund.sevenDayArray = sevenDayArray;
+        fund.wanFenArray = wanFenArray;
+    }
+    
+    
+    return fund;
 }
 
 - (NSString *)todayDate:(NSDate *)date

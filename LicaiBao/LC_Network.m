@@ -42,9 +42,11 @@ static LC_Network *_shareNetwork;
     URLTmp = URLTmp1;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: URLTmp]];
     
+//    NSLog(@"url - %@",url);
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", operation.responseString);
+//        NSLog(@"Success: %@", operation.responseString);
         
         NSMutableArray *fundArray = [[NSMutableArray alloc] init];
         
@@ -62,13 +64,25 @@ static LC_Network *_shareNetwork;
         [_delegate downloadFinish];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        NSLog(@"Failure: %@", error);
+//        NSLog(@"Failure: %@", error);
         [_delegate downloadFail:error];
         
     }];
     [operation start];
 }
 
+- (void)sina:(NSDictionary *)sinaInfo url:(NSString *)url
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:sinaInfo success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+        [_delegate downloadFinishWith:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [_delegate downloadFail:error];
+    }];
+    
+}
 
 
 @end

@@ -15,6 +15,7 @@
 @synthesize sevenDay = _sevenDay;
 @synthesize wanFen = _wanFen;
 
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -39,7 +40,7 @@
         [cellBackImageView addSubview:_companyLabel];
         
         _sevenDay = [[UILabel alloc] init];
-        _sevenDay.frame = CGRectMake(100, 10, 60, 20);
+        _sevenDay.frame = CGRectMake(90, 10, 60, 20);
         _sevenDay.backgroundColor = [UIColor clearColor];
         _sevenDay.font = [UIFont boldSystemFontOfSize:16];
         _sevenDay.textColor = UIColorFromRGB(0x91969c);
@@ -47,7 +48,7 @@
         [cellBackImageView addSubview:_sevenDay];
         
         _wanFen = [[UILabel alloc] init];
-        _wanFen.frame = CGRectMake(180, 10, 60, 20);
+        _wanFen.frame = CGRectMake(170, 10, 60, 20);
         _wanFen.backgroundColor = [UIColor clearColor];
         _wanFen.font = [UIFont boldSystemFontOfSize:16];
         _wanFen.textColor = UIColorFromRGB(0x91969c);

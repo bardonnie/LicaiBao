@@ -13,9 +13,11 @@
 
 
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "MobClick.h"
 #import "FMDatabase.h"
 #import "PNColor.h"
 #import "MJRefresh.h"
@@ -37,6 +39,7 @@
 #import "LC_HomeCell.h"
 #import "LC_WeiBoUser.h"
 #import "DataBase.h"
+#import "LC_TipsScrollView.h"
 
 #import "LC_AppDelegate.h"
 

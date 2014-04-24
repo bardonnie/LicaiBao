@@ -56,7 +56,7 @@
     
     _delegate = [UIApplication sharedApplication].delegate;
     
-    _cellTitleArray = [[NSArray alloc] initWithObjects:@"收益提醒",@"检查更新",@"意见反馈",@"捐助开发者",@"关于理财宝", nil];
+    _cellTitleArray = [[NSArray alloc] initWithObjects:@"收益提醒",@"检查更新",@"意见反馈",@"关于理财宝", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -83,17 +83,20 @@
     if (indexPath.row == 0)
     {
         cellBackImageView.userInteractionEnabled = YES;
-
+        
         UIButton *remindSwithBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         remindSwithBtn.frame = CGRectMake(215, 7, 70, 30);
-        [remindSwithBtn setImage:[UIImage imageNamed:@"off"] forState:UIControlStateNormal];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"is_push"])
+            [remindSwithBtn setImage:[UIImage imageNamed:@"on"] forState:UIControlStateNormal];
+        else
+            [remindSwithBtn setImage:[UIImage imageNamed:@"off"] forState:UIControlStateNormal];
         [remindSwithBtn addTarget:self action:@selector(remindSwithBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [cellBackImageView addSubview:remindSwithBtn];
     }
     else if (indexPath.row == 1)
     {
         UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(215, 7, 70, 30)];
-        versionLabel.text = [NSString stringWithFormat:@"V %@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+        versionLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
         versionLabel.textAlignment = NSTextAlignmentRight;
         [cellBackImageView addSubview:versionLabel];
     }
@@ -124,7 +127,9 @@
             break;
         case 1:
         {
-            NSLog(@"检测更新");
+            [SVProgressHUD showWithStatus:@"请稍等"];
+            [MobClick startWithAppkey:UMENG_APP_KEY];
+            [MobClick checkUpdateWithDelegate:self selector:@selector(updateApp:)];
         }
             break;
         case 2:
@@ -133,14 +138,13 @@
             [self.navigationController pushViewController:feedbackViewController animated:YES];
         }
             break;
+//        case 3:
+//        {
+//            NSLog(@"捐助");
+//        }
+//            break;
         case 3:
         {
-            NSLog(@"捐助");
-        }
-            break;
-        case 4:
-        {
-            
             [self.navigationController pushViewController:_delegate.aboutViewController animated:YES];
         }
             break;
@@ -149,9 +153,48 @@
     }
 }
 
+- (void)updateApp:(NSDictionary *)dic
+{
+    NSLog(@"dic - %@",dic);
+    if ([[dic objectForKey:@"update"] boolValue])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"哔～～发现新版本%@",[dic objectForKey:@"version"]] message:[dic objectForKey:@"update_log"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去下载", nil];
+        
+        [alert show];
+    }
+    else
+    {
+        [SVProgressHUD showSmileStatus:@"当前已是最新版本!" duration:2];
+    }
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8"]];
+            break;
+        default:
+            break;
+    }
+    
+}
+
 - (void)remindSwithBtnClick:(UIButton *)sender
 {
     NSLog(@"推送");
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"is_push"])
+    {
+        [sender setImage:[UIImage imageNamed:@"off"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"is_push"];
+    }
+    else
+    {
+        [sender setImage:[UIImage imageNamed:@"on"] forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"is_push"];
+    }
 }
 
 - (void)doneBtnClick:(UIBarButtonItem *)sender

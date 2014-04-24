@@ -15,6 +15,6 @@
 @property (nonatomic, strong) BEMSimpleLineGraphView *sevenDaySimpleLineGraphView;
 @property (nonatomic, strong) BEMSimpleLineGraphView *earningsSimpleLineGraphView;
 
-- (id)initWithFund:(LC_Fund *)fund WithNumOfAllFund:(int)num AndRank:(int)rank;
+- (id)initWithFundName:(NSString *)fundName FundCount:(int)fundCount AndFundRank:(int)fundRank;
 
 @end

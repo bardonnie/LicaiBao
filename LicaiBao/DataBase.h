@@ -21,6 +21,6 @@
 - (void)uploadFundInfo:(NSArray *)fundArray;
 
 - (NSArray *)selectTodayFund;
-- (NSArray *)selectTrendsFund:(NSString *)fundCode;
+- (LC_Fund *)selectTrendsFund:(NSString *)fundName;
 
 @end

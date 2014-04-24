@@ -94,6 +94,26 @@
     [SVProgressHUD dismissWithError:string afterDelay:duration];
 }
 
++ (void)showSmileStatus:(NSString *)string duration:(NSTimeInterval)duration
+{
+    [SVProgressHUD show];
+    [[SVProgressHUD sharedView] dismissWithStatus:string afterDelay:duration];
+}
+
+- (void)dismissWithStatus:(NSString *)string afterDelay:(NSTimeInterval)seconds {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self.alpha != 1)
+            return;
+        
+        self.imageView.image = [UIImage imageNamed:@"hello"];
+        
+        self.imageView.hidden = NO;
+        [self setStatus:string];
+        [self.spinnerView stopAnimating];
+        
+        self.fadeOutTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+    });
+}
 
 #pragma mark - Dismiss Methods
 

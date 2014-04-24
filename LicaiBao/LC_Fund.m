@@ -10,6 +10,6 @@
 
 @implementation LC_Fund
 
-@synthesize name,company,sevenDay,wanFen,fundCode,oldSevenDay,oldWanFen,update;
+@synthesize name, company, sevenDay, wanFen, fundCode, oldSevenDay, oldWanFen, update, sevenDayArray, wanFenArray;
 
 @end

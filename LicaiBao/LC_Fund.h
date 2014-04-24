@@ -18,5 +18,7 @@
 @property (nonatomic, strong) NSString *oldSevenDay;
 @property (nonatomic, strong) NSString *oldWanFen;
 @property (nonatomic, strong) NSString *update;
+@property (nonatomic, strong) NSArray *sevenDayArray;
+@property (nonatomic, strong) NSArray *wanFenArray;
 
 @end
