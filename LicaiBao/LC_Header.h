@@ -10,6 +10,9 @@
 #define DB_AT_PATH  [[NSBundle mainBundle] pathForResource:@"Funds" ofType:@"sqlite"]
 #define DB_TO_PATH  [NSString stringWithFormat:@"%@/Funds.sqlite",[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]]
 
+#define APP_STORE_URL       @"https://itunes.apple.com/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8"
+#define APP_STORE_REVIEW    @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=867471431"
+
 
 
 #import <QuartzCore/QuartzCore.h>

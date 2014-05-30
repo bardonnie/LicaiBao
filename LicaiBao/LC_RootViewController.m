@@ -199,7 +199,7 @@
 {
     [self selectFundData];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
+    _dateLabel.text = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"Time"]];
     [_header endRefreshing];
 }
 

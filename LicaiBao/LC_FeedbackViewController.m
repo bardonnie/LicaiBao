@@ -38,6 +38,12 @@
     [_feedBackTextView resignFirstResponder];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -195,6 +201,8 @@
     else
     {
         [SVProgressHUD showSuccessWithStatus:@"提交成功" duration:2];
+        _feedBackTextView.text = @"";
+        _numberTextField.text = @"";
     }
 }
 

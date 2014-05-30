@@ -29,7 +29,7 @@
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
     
     [UMSocialData setAppKey:UMENG_APP_KEY];
-    [UMSocialWechatHandler setWXAppId:@"" url:@"https://itunes.apple.com/us/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8"];
+    [UMSocialWechatHandler setWXAppId:@"wxe84e60dedee01c9d" url:@"https://itunes.apple.com/us/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8"];
     
     [MobClick startWithAppkey:UMENG_APP_KEY];
     [MobClick checkUpdate:@"哔～～发现新版本" cancelButtonTitle:@"取消" otherButtonTitles:@"去下载"];

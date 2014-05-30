@@ -5,7 +5,7 @@
 	<key>API_KEY</key>
 	<string>6iWN6dd7LsOmfMwKAa6POKZb</string>
 	<key>PRODUCTION_MODE</key>
-	<false/>
+	<true/>
 	<key>DEBUG</key>
 	<false/>
 	<key>BPUSH_CHANNEL</key>

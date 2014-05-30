@@ -28,6 +28,12 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,7 +62,7 @@
     
     _delegate = [UIApplication sharedApplication].delegate;
     
-    _cellTitleArray = [[NSArray alloc] initWithObjects:@"收益提醒",@"检查更新",@"意见反馈",@"关于理财宝", nil];
+    _cellTitleArray = [[NSArray alloc] initWithObjects:@"收益提醒",@"检查更新",@"意见反馈",@"打赏一下,评个分",@"关于理财宝", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,7 +81,7 @@
     [cellBackImageView setImage:[UIImage imageNamed:@"wire-frame"]];
     [cell.contentView addSubview:cellBackImageView];
     
-    UILabel *cellTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, 120, 34)];
+    UILabel *cellTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, 150, 34)];
     cellTitleLabel.backgroundColor = [UIColor clearColor];
     cellTitleLabel.text = [_cellTitleArray objectAtIndex:indexPath.row];
     [cellBackImageView addSubview:cellTitleLabel];
@@ -138,12 +144,12 @@
             [self.navigationController pushViewController:feedbackViewController animated:YES];
         }
             break;
-//        case 3:
-//        {
-//            NSLog(@"捐助");
-//        }
-//            break;
         case 3:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:APP_STORE_URL]];
+        }
+            break;
+        case 4:
         {
             [self.navigationController pushViewController:_delegate.aboutViewController animated:YES];
         }

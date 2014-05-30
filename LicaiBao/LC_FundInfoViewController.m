@@ -6,6 +6,10 @@
 //  Copyright (c) 2014年 trends-china. All rights reserved.
 //
 
+
+#define WEIBO_SHARE_TEXT    [NSString stringWithFormat:@"#理财宝·收益趋势#%@ 近9日收益趋势,理财宝下载链接:%@",_fundName,APP_STORE_URL]
+
+
 #import "LC_FundInfoViewController.h"
 #import "GDataXMLNode.h"
 
@@ -241,8 +245,12 @@
 - (void)uMengShare
 {
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-    [UMSocialData defaultData].extConfig.title = @"点击跳转至App Store 下载理财宝";
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"https://itunes.apple.com/us/app/li-cai-bao-hu-lian-wang-li/id867471431?ls=1&mt=8";
+    [UMSocialData defaultData].extConfig.title = [NSString stringWithFormat:@"%@近9日收益趋势 点击下载理财宝iOS版查看",_fundName];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = APP_STORE_URL;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = APP_STORE_URL;
+    
+    [UMSocialData defaultData].extConfig.sinaData.shareText = WEIBO_SHARE_TEXT;
+    [UMSocialData defaultData].extConfig.tencentData.shareText = WEIBO_SHARE_TEXT;
     
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UMENG_APP_KEY
